@@ -3,7 +3,7 @@ import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import { formatDate } from 'pliny/utils/formatDate'
 
-const MAX_DISPLAY = 5
+const MAX_DISPLAY = 7
 
 export default function Home({ posts }) {
   return (
@@ -82,7 +82,6 @@ export default function Home({ posts }) {
       )}
       {siteMetadata.newsletter?.provider && (
         <div className="flex items-center justify-center pt-4">
-          {/* <NewsletterForm /> */}
         </div>
       )}
     </>
