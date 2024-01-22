@@ -3,7 +3,7 @@ const siteMetadata = {
   title: 'thevesh.com',
   author: 'Thevesh Theva',
   headerTitle: 'thevesh.com',
-  description: 'Writing is the best way to think. Writing publicly makes me do it with discipline and accountability. Welcome to a place where I discuss data, principles I apply to situations where data is useless, and policy ideas (typically based on data, but still half-baked). I hope to experience and hold on to the joy of writing along the way.',
+  description: 'Writing makes me think properly. Writing publicly makes me disciplined and accountable. On this personal site, I discuss data, first principles, and policy ideas. I hope to experience all the joys of writing along the way.',
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'https://thevesh.com',
