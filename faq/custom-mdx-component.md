@@ -30,8 +30,7 @@ export const components: MDXComponents = {
   TOCInline,
   a: CustomLink,
   pre: Pre,
-+  DonutChart,
-  BlogNewsletterForm,
++  DonutChart
 }
 ```
 
