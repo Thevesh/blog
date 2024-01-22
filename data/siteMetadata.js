@@ -15,6 +15,14 @@ const siteMetadata = {
   twitter: 'https://twitter.com/Thevesh',
   linkedin: 'https://www.linkedin.com/in/Thevesh',
   locale: 'en-US',
+  analytics: {
+    // If you want to use an analytics provider you have to add it to the
+    // content security policy in the `next.config.js` file.
+    // supports Plausible, Simple Analytics, Umami, Posthog or Google Analytics.
+    plausibleAnalytics: {
+      plausibleDataDomain: 'thevesh.com',
+    },
+  },
   search: {
     provider: 'kbar', // kbar or algolia
     kbarConfig: {
