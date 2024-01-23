@@ -1,0 +1,172 @@
+---
+title: 'PADU: We Need to Know More'
+date: '2024-01-24'
+lastmod: '2024-01-24'
+tags: ['dataviz','open-data','not-enough-data']
+draft: false
+summary: 'The PADU team currently puts out some data everyday. I argue that we need better dataviz, more meaningful data, and better methods of providing the data.'
+images: ['/static/images/og-image.jpg']
+---
+
+## Introduction
+
+_Note: I assume familiarity with PADU itself._
+
+At roughly 0900hrs daily, PADU's [official social media](https://x.com/paduofficial_) puts out the following infographic:
+
+<p align="center">
+<img src="https://thevesh-blog.s3.ap-southeast-1.amazonaws.com/padu_official.jpeg" alt="Daily PADU infographing showing 1,518,746 registrations as of 11.59pm on 22 January 2024" width="350"></img>
+</p>
+
+While it is commendable that the team is making an effort to keep the _rakyat_ engaged and motivated using data, I think the quality of the dataviz, data, and data dissemination method leave much to be desired. I want to see the quality of government data get better, so here are some constructive suggestions in all 3 domains.
+
+<TOCInline toc={props.toc} exclude="Introduction" />
+
+## Better dataviz
+
+The biggest problem with the existing infographic is that the method of presentation is largely meaningless, for 3 reasons:
+
+1) **There is no sense of trend**. When I look at that infographic, I don't know if we're doing better or worse. All I see is a snapshot of how things stood as of 2359hrs the previous day.
+2) **There is no sense of scale**. Unless you know the size of the target population (roughly 22 mil adults), you have no idea whether 1.5 mil registrations is good or bad. 
+3) **The state-level numbers are misleading**. There is a huge difference in the size of states' populations, so (for example), it is an absolute no-brainer that the most populous state (Selangor) will have the highest number of registrants. This tells us nothing until the numbers are scaled against the respective populations.
+
+To fix the first problem (no sense of trend), all you need is some timeseries dataviz. This does the job, plotting both daily and cumulative registrations:
+
+<p align="center">
+<img src="https://thevesh-blog.s3.ap-southeast-1.amazonaws.com/padu_1_ts_abs.png" alt = "A vertical panel of 2 timeseries charts showing daily (top) and cumulative (bottom) registrations for PADU.
+
+Data:
+02-Jan: 186,704 (+186,704)
+03-Jan: 438,387 (+251,683)
+04-Jan: 567,279 (+128,892)
+05-Jan: 682,355 (+115,076)
+06-Jan: 747,125 (+64,770)
+07-Jan: 798,528 (+51,403)
+08-Jan: 853,832 (+55,304)
+09-Jan: 905,548 (+51,716)
+10-Jan: 953,138 (+47,590)
+11-Jan: 996,926 (+43,788)
+12-Jan: 1,032,215 (+35,289)
+13-Jan: 1,062,721 (+30,506)
+14-Jan: 1,093,124 (+30,403)
+15-Jan: 1,129,770 (+36,646)
+16-Jan: 1,169,353 (+39,583)
+17-Jan: 1,214,819 (+45,466)
+18-Jan: 1,264,226 (+49,407)
+19-Jan: 1,310,087 (+45,861)
+20-Jan: 1,367,294 (+57,207)
+21-Jan: 1,427,124 (+59,830)
+22-Jan: 1,518,746 (+91,622)" width="350"></img>
+</p>
+
+To fix the second problem (no sense of scale), you can plot the exact same data but expressed as a % of the target population rather than in absolute terms. This has direct comparability to the first chart, and has the nice feature that you can easily extrapolate what % will eventually be reached from the most recent daily number:
+
+<p align="center">
+<img src="https://thevesh-blog.s3.ap-southeast-1.amazonaws.com/padu_2_ts_rate.png" alt="A vertical panel of 2 timeseries charts showing daily (top) and cumulative (bottom) registrations for PADU as a % of citizens aged 18+.
+
+Data:
+01-Jan: 0.0 (+0.0%)
+02-Jan: 0.9 (+0.9%)
+03-Jan: 2.0 (+1.2%)
+04-Jan: 2.6 (+0.6%)
+05-Jan: 3.1 (+0.5%)
+06-Jan: 3.4 (+0.3%)
+07-Jan: 3.7 (+0.2%)
+08-Jan: 3.9 (+0.3%)
+09-Jan: 4.2 (+0.2%)
+10-Jan: 4.4 (+0.2%)
+11-Jan: 4.6 (+0.2%)
+12-Jan: 4.7 (+0.2%)
+13-Jan: 4.9 (+0.1%)
+14-Jan: 5.0 (+0.1%)
+15-Jan: 5.2 (+0.2%)
+16-Jan: 5.4 (+0.2%)
+17-Jan: 5.6 (+0.2%)
+18-Jan: 5.8 (+0.2%)
+19-Jan: 6.0 (+0.2%)
+20-Jan: 6.3 (+0.3%)
+21-Jan: 6.6 (+0.3%)
+22-Jan: 7.0 (+0.4%)" width="350"></img>
+</p>
+
+To fix the third problem (misleading comparison between states), you have to scale the data by the size of the target group in each state, and present that data in an easy-to-read manner (e.g. a simple sorted bar chart). I think the chart below does the trick nicely, and immediately conveys why this analysis is so vital - Selangor goes from having the highest number of **registrants**, to having the **lowest registration rate**:
+
+<p align="center">
+<img src="https://thevesh-blog.s3.ap-southeast-1.amazonaws.com/padu_4_bar_rate.png" alt="A bar chart showing registrations for PADU by state, as a % of citizens aged 18+ in descending order.
+
+Data:
+1) W.P. Putrajaya: 11.1%
+2) Sarawak: 10.7%
+3) Pahang: 9.3%
+4) Terengganu: 8.9%
+5) Perlis: 7.8%
+6) Perak: 7.7%
+7) W.P. Labuan: 7.4%
+8) Kelantan: 7.3%
+9) Melaka: 7.1%
+10) Sabah: 6.7%
+11) Kedah: 6.7%
+12) Negeri Sembilan: 6.6%
+13) W.P. Kuala Lumpur: 6.5%
+14) Pulau Pinang: 6.2%
+15) Johor: 5.8%
+16) Selangor: 5.7%)" width="350"></img>
+</p>
+
+Finally, even if you insist on showing the absolute numbers for each state, wouldn't it be better to present the data in a more easily digestible manner using a humble but effective bar chart? I really cannot stress enough how underrated bar charts are - they convey information much more clearly and directly than pie charts, fancy infographics, and most of the other dataviz options typically chosen by people going for style over substance.
+
+<p align="center">
+<img src="https://thevesh-blog.s3.ap-southeast-1.amazonaws.com/padu_3_bar_abs.png" alt="A bar chart showing registrations for PADU by state in descending order.
+
+Data:
+1) Selangor: 281,396
+2) Sarawak: 187,265
+3) Johor: 155,822
+4) Perak: 133,369
+5) Sabah: 124,375
+6) Kedah: 98,156
+7) W.P. Kuala Lumpur: 87,961
+8) Kelantan: 86,063
+9) Pulau Pinang: 76,710
+10) Pahang: 74,685
+11) Negeri Sembilan: 69,568
+12) Terengganu: 68,262
+13) Melaka: 47,076
+14) Perlis: 16,227
+15) W.P. Putrajaya: 7,426
+16) W.P. Labuan: 4,385" width="350"></img>
+</p>
+
+
+## Better data
+
+Enough playing around with the data that's being released; let's talk about the critical data that *isn't* being put out there:
+
+1) **Number of actual data submissions**.[^1] In the context of PADU, it is meaningless if you register for a PADU account (perhaps out of curiosity), have a look at the site, then decide you can't be bothered and log out permanently. Therefore, the PADU team needs to start providing information not just on registrations, but also on the number (and rate!) of actual eKYC-verified[^2] submissions. My guess is that fewer than 50% of those who registered actually made a verified submission.
+
+2) **Demographic breakdowns**. By state, sex, age, and ethnicity at least,[^3] but preferably also by marital status, OKU status, and income bracket. This will immediately shine a light on whether the groups of highest concern (the elderly, the poor, the disabled, single mothers, etc) are being reached. Reporting these numbers is an absolute must for any national-scale program, especially one centred around data.
+
+3) **Completeness of submissions**. On PADU, it is possible to ‘submit' your data even if you leave most of the fields blank. To judge whether this exercise is actually meaningful, and more importantly sustainble, the PADU team should report the % of fields completed by people who have submitted their data. Experience from surveys and censuses, especially those demanding a long time to complete (like PADU), tells us that many people may just give up halfway or even before.
+
+4) **Number of civil servant registrations and submissions**. It was [recently announced](https://www.astroawani.com/berita-malaysia/civil-servants-required-update-data-padu-system-feb-15-455082?) that civil servants were required to update their information via PADU. There is no issue with this instruction per se,[^4] but we should bear in mind that this may greatly distort the current trend, since civil servants are typically very compliant with circulars and instructions. It is therefore important that we know what proportion of PADU's coverage is coming from civil servants vs the rest.
+
+
+## Better dissemination of data
+
+To compile the charts above, I manually typed out the numbers from 21 days' worth of infographics.[^5] It is a shame that I had to do this, since [OpenDOSM](https://open.dosm.gov.my) comes equipped not only with programmatic access to their datasets (via API and via permalink to the full dataset), but also with high-quality dashboards that enable you to get insights right away even if you have 0 knowledge of how to process data on your own. I'd love to see a PADU dashboard on OpenDOSM, and I'm sure many others would too. The infrastructure is already there - use it!
+
+Note - I am not saying there is anything wrong with providing an infographic. Malaysia's experience in the pandemic has shown us that citizens love a clean, consistent infographic they can track daily. However, similar to how MoH (eventually) supplemented their daily vaccination rate infographics with [structured data on GitHub](https://github.com/CITF-Malaysia/citf-public) and the [COVIDNOW dashboard](https://covidnow.moh.gov.my), DOSM can also make this extra important step.
+
+## Conclusion
+
+Provide better dataviz (DOSM is more than capable). Provide better data. And provide the data better. A richer and higher-quality data ecosystem will foster greater trust in the system, and enable society to more deeply understand and engage with what is a central national issue at present.
+
+[^1]: I personally don't agree with the methodology of asking people to submit 39 pieces of information, most of which the government should have anyway. However, that's a separate issue.
+
+[^2]: This is another important point - some people may want to submit their data but find themselves unable to do so due to issues with the eKYC process. These issues are not the fault of the PADU team - industry benchmarks generally show that eKYC based on a picture of your IC will fail for 20-30% of the population.
+
+[^3]: Sex, age, and ethnicity are the ‘big 3' demographic variables in Malaysia. You'll see my refer to them constantly in my work. Sex and age are standard dimensions to look at in any country; ethnicity is a particular focus for Malaysia. In countries like South Korea and Japan which are ethically homogeneous, this dimension is meaningless and is seldom collected, much less analysed.
+
+[^4]: Besides the small fact that this seems like a huge duplication, given that civil servants fill in their profile in [JPA's HRMIS system](https://docs.jpa.gov.my/docs/myppsm/PPSM/PO/Pengurusan-Maklumat-Sumber-Manusia/8/) to a much deeper extent than PADU requires.
+
+[^5]: Sure, I could have whipped up some automation with out-of-the-box OCR libraries, but it didn't seem worth it given that it only takes me a minute to type out manually.
