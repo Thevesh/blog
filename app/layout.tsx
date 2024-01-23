@@ -58,7 +58,6 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const token_tinybird = process.env.NEXT_PUBLIC_TOKEN_TINYBIRD
   return (
     <html
       lang={siteMetadata.language}
@@ -66,12 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
     >
       <head>
-        <script
-          defer
-          src="https://unpkg.com/@tinybirdco/flock.js"
-          data-host="https://api.tinybird.co"
-          data-token={token_tinybird}
-        ></script>
+        <script defer data-domain="thevesh.com" src="https://plausible.io/js/script.js"></script>
       </head>
       <link rel="apple-touch-icon" sizes="76x76" href="/static/favicons/apple-touch-icon.png" />
       <link rel="icon" type="image/png" sizes="32x32" href="/static/favicons/favicon-32x32.png" />
