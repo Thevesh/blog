@@ -58,8 +58,7 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const token_tinybird = process.env.TOKEN_TINYBIRD
-
+  const token_tinybird = process.env.NEXT_PUBLIC_TOKEN_TINYBIRD
   return (
     <html
       lang={siteMetadata.language}
