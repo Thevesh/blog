@@ -13,6 +13,7 @@ import PostBanner from '@/layouts/PostBanner'
 import { Metadata } from 'next'
 import siteMetadata from '@/data/siteMetadata'
 import { notFound } from 'next/navigation'
+import LinkCard from '@/components/LinkCard'
 
 const defaultLayout = 'PostLayout'
 const layouts = {
@@ -108,6 +109,12 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
 
   const Layout = layouts[post.layout || defaultLayout]
 
+  // Create an enhanced components object
+  const enhancedComponents = {
+    ...components,
+    LinkCard,
+  }
+
   return (
     <>
       <script
@@ -115,7 +122,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Layout content={mainContent} authorDetails={authorDetails} next={next} prev={prev}>
-        <MDXLayoutRenderer code={post.body.code} components={components} toc={post.toc} />
+        <MDXLayoutRenderer code={post.body.code} components={enhancedComponents} toc={post.toc} />
       </Layout>
     </>
   )

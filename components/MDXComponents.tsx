@@ -6,6 +6,9 @@ import Image from './Image'
 import CustomLink from './Link'
 import TableWrapper from './TableWrapper'
 
+import dynamic from 'next/dynamic'
+const LinkCard = dynamic(() => import('./LinkCard'), { ssr: false })
+
 export const components: MDXComponents = {
   Image,
   TOCInline,
