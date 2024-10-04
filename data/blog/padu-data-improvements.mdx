@@ -15,7 +15,7 @@ _Note: I assume familiarity with PADU itself._
 At roughly 0900hrs daily, PADU's [official social media](https://x.com/paduofficial_) puts out the following infographic:
 
 <p align="center">
-<img src="https://thevesh-blog.s3.ap-southeast-1.amazonaws.com/padu_official.jpeg" alt="Daily PADU infographing showing 1,518,746 registrations as of 11.59pm on 22 January 2024" width="350"></img>
+<img src="https://thevesh-blog.s3.ap-southeast-1.amazonaws.com/padu_official.webp" alt="Daily PADU infographing showing 1,518,746 registrations as of 11.59pm on 22 January 2024" width="350"></img>
 </p>
 
 While it is commendable that the team is making an effort to keep the _rakyat_ engaged and motivated using data, I think the quality of the dataviz, data, and data dissemination method leave much to be desired. I want to see the quality of government data get better, so here are some constructive suggestions in all 3 domains.
@@ -33,7 +33,7 @@ The biggest problem with the existing infographic is that the method of presenta
 To fix the first problem (no sense of trend), all you need is some timeseries dataviz. This does the job, plotting both daily and cumulative registrations:
 
 <p align="center">
-<img src="https://thevesh-blog.s3.ap-southeast-1.amazonaws.com/padu_1_ts_abs.png" alt = "A vertical panel of 2 timeseries charts showing daily (top) and cumulative (bottom) registrations for PADU.
+<img src="https://thevesh-blog.s3.ap-southeast-1.amazonaws.com/padu_1_ts_abs.webp" alt = "A vertical panel of 2 timeseries charts showing daily (top) and cumulative (bottom) registrations for PADU.
 
 Data:
 02-Jan: 186,704 (+186,704)
@@ -62,7 +62,7 @@ Data:
 To fix the second problem (no sense of scale), you can plot the exact same data but expressed as a % of the target population rather than in absolute terms. This has direct comparability to the first chart, and has the nice feature that you can easily extrapolate what % will eventually be reached from the most recent daily number:
 
 <p align="center">
-<img src="https://thevesh-blog.s3.ap-southeast-1.amazonaws.com/padu_2_ts_rate.png" alt="A vertical panel of 2 timeseries charts showing daily (top) and cumulative (bottom) registrations for PADU as a % of citizens aged 18+.
+<img src="https://thevesh-blog.s3.ap-southeast-1.amazonaws.com/padu_2_ts_rate.webp" alt="A vertical panel of 2 timeseries charts showing daily (top) and cumulative (bottom) registrations for PADU as a % of citizens aged 18+.
 
 Data:
 01-Jan: 0.0 (+0.0%)
@@ -92,7 +92,7 @@ Data:
 To fix the third problem (misleading comparison between states), you have to scale the data by the size of the target group in each state, and present that data in an easy-to-read manner (e.g. a simple sorted bar chart). I think the chart below does the trick nicely, and immediately conveys why this analysis is so vital - Selangor goes from having the highest number of **registrants**, to having the **lowest registration rate**:
 
 <p align="center">
-<img src="https://thevesh-blog.s3.ap-southeast-1.amazonaws.com/padu_4_bar_rate.png" alt="A bar chart showing registrations for PADU by state, as a % of citizens aged 18+ in descending order.
+<img src="https://thevesh-blog.s3.ap-southeast-1.amazonaws.com/padu_4_bar_rate.webp" alt="A bar chart showing registrations for PADU by state, as a % of citizens aged 18+ in descending order.
 
 Data:
 1) W.P. Putrajaya: 11.1%
@@ -116,7 +116,7 @@ Data:
 Finally, even if you insist on showing the absolute numbers for each state, wouldn't it be better to present the data in a more easily digestible manner using a humble but effective bar chart? I really cannot stress enough how underrated bar charts are - they convey information much more clearly and directly than pie charts, fancy infographics, and most of the other dataviz options typically chosen by people going for style over substance.
 
 <p align="center">
-<img src="https://thevesh-blog.s3.ap-southeast-1.amazonaws.com/padu_3_bar_abs.png" alt="A bar chart showing registrations for PADU by state in descending order.
+<img src="https://thevesh-blog.s3.ap-southeast-1.amazonaws.com/padu_3_bar_abs.webp" alt="A bar chart showing registrations for PADU by state in descending order.
 
 Data:
 1) Selangor: 281,396
@@ -167,8 +167,8 @@ If, for whatever reason, you want to check the data presented above, all the cod
 
 <LinkCard
   href="https://thev.cloud/code-padu"
-  title="thevesh/charts/code-padu"
-  description="Open-sourced code + data sources to produce the charts used in this blog post. All MIT-licensed, feel free to steal!"
+  title="thevesh/charts/2024-01-24_padu"
+  description="Open-sourced code + data sources to produce the charts used in this blog post. All MIT-licensed, feel free to reuse!"
   stats={[
     { label: "Python", value: "" },
     { label: "Accessed: 24 Jan 2024", value: "" }
@@ -179,7 +179,7 @@ If, for whatever reason, you want to check the data presented above, all the cod
 
 [^2]: This is another important point - some people may want to submit their data but find themselves unable to do so due to issues with the eKYC process. These issues are not the fault of the PADU team - industry benchmarks generally show that eKYC based on a picture of your IC will fail for 20-30% of the population.
 
-[^3]: Sex, age, and ethnicity are the ‘big 3' demographic variables in Malaysia. You'll see my refer to them constantly in my work. Sex and age are standard dimensions to look at in any country; ethnicity is a particular focus for Malaysia. In countries like South Korea and Japan which are ethically homogeneous, this dimension is meaningless and is seldom collected, much less analysed.
+[^3]: Sex, age, and ethnicity are the ‘big 3' demographic variables in Malaysia. You'll see me refer to them constantly in my work. Sex and age are standard dimensions to look at in any country; ethnicity is a particular focus for Malaysia. In countries like South Korea and Japan which are ethically homogeneous, this dimension is meaningless and is seldom collected, much less analysed.
 
 [^4]: Note: There may be some duplication for civil servants who have filled in their profile in [JPA's HRMIS system](https://docs.jpa.gov.my/docs/myppsm/PPSM/PO/Pengurusan-Maklumat-Sumber-Manusia/8/), which is more fine-grained than PADU due to its operational nature.
 
