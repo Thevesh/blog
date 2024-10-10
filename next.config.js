@@ -71,6 +71,10 @@ module.exports = () => {
           protocol: 'https',
           hostname: 'picsum.photos',
         },
+        {
+          protocol: 'https',
+          hostname: 'thevesh-blog.s3.ap-southeast-1.amazonaws.com',
+        },
       ],
     },
     async headers() {
