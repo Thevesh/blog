@@ -8,6 +8,7 @@ import SectionContainer from '@/components/SectionContainer'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
+import PostViewCounter from '@/components/PostViewCounter'
 
 const postDateTemplate: Intl.DateTimeFormatOptions = {
   weekday: 'long',
@@ -30,9 +31,9 @@ export default function PostLayout({ content, children }: LayoutProps) {
       <ScrollTopAndComment />
       <article>
         <div className="xl:divide-y xl:divide-gray-200 xl:dark:divide-gray-700">
-          <header className="pb-4 pt-6 xl:pb-6">
-            <div className="space-y-1 text-center">
-              <dl className="space-y-6">
+          <header className="pb-6 pt-6 xl:pb-8">
+            <div className="space-y-4 text-center">
+              <dl>
                 <div>
                   <dt className="sr-only">Published on</dt>
                   <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
@@ -46,17 +47,20 @@ export default function PostLayout({ content, children }: LayoutProps) {
                 <PageTitle>{title}</PageTitle>
               </div>
               {tags && (
-                <div className="flex flex-wrap justify-center">
+                <div className="-mx-1 flex flex-wrap justify-center">
                   {tags.map((tag) => (
                     <Tag key={tag} text={tag} />
                   ))}
                 </div>
               )}
+              <div className="flex justify-center">
+                <PostViewCounter slug={slug} />
+              </div>
             </div>
           </header>
           <div className="divide-y divide-gray-200 pb-8 dark:divide-gray-700 xl:divide-y-0">
             <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:pb-0">
-              <div className="prose max-w-none pb-8 pt-4 dark:prose-invert">
+              <div className="prose max-w-none pb-8 pt-10 dark:prose-invert">
                 <div className="mx-auto max-w-3xl">{children}</div>
               </div>
               {siteMetadata.comments && (

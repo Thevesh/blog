@@ -3,7 +3,7 @@ import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer'
 import { allBlogs } from 'contentlayer/generated'
 import { genPageMetadata } from 'app/seo'
 
-const POSTS_PER_PAGE = 7
+const POSTS_PER_PAGE = 24
 
 export const metadata = genPageMetadata({ title: 'Blog' })
 

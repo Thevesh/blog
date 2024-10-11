@@ -1,13 +1,45 @@
+'use client'
+
+import { useState } from 'react'
 import Link from '@/components/Link'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import { formatDate } from 'pliny/utils/formatDate'
 import NewsletterForm from 'pliny/ui/NewsletterForm'
 import Image from 'next/image'
+import ViewCounter from '@/components/ViewCounter'
+import tagData from 'app/tag-data.json'
+import { slug } from 'github-slugger'
 
-const MAX_DISPLAY = 12
+const POSTS_PER_PAGE = 12
 
 export default function Home({ posts }) {
+  const [selectedTag, setSelectedTag] = useState('All Posts')
+  const [currentPage, setCurrentPage] = useState(1)
+
+  const tagCounts = tagData as Record<string, number>
+  const tagKeys = Object.keys(tagCounts)
+  const sortedTags = [
+    'All Posts',
+    ...tagKeys.sort((a, b) => {
+      // First, sort by post count (descending)
+      const countDiff = tagCounts[b] - tagCounts[a]
+      if (countDiff !== 0) return countDiff
+
+      // If post counts are equal, sort alphabetically
+      return a.localeCompare(b)
+    }),
+  ]
+
+  const filteredPosts =
+    selectedTag === 'All Posts' ? posts : posts.filter((post) => post.tags.includes(selectedTag))
+
+  const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE)
+  const displayPosts = filteredPosts.slice(
+    (currentPage - 1) * POSTS_PER_PAGE,
+    currentPage * POSTS_PER_PAGE
+  )
+
   return (
     <>
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
@@ -18,10 +50,30 @@ export default function Home({ posts }) {
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
             {siteMetadata.description}
           </p>
+          <ViewCounter />
+        </div>
+        <div className="flex flex-wrap justify-center space-x-2 py-6">
+          {sortedTags.map((tag) => (
+            <button
+              key={tag}
+              onClick={() => {
+                setSelectedTag(tag)
+                setCurrentPage(1)
+              }}
+              className={`m-1 rounded-lg px-3 py-1 text-sm font-medium 
+                ${
+                  selectedTag === tag
+                    ? 'bg-primary-500 text-white'
+                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600'
+                }`}
+            >
+              {tag} {tag !== 'All Posts' && `(${tagCounts[tag]})`}
+            </button>
+          ))}
         </div>
         <div className="grid grid-cols-1 gap-8 pt-10 md:grid-cols-2 xl:grid-cols-3">
-          {!posts.length && 'No posts found.'}
-          {posts.slice(0, MAX_DISPLAY).map((post) => {
+          {!displayPosts.length && 'No posts found.'}
+          {displayPosts.map((post) => {
             const { slug, date, title, summary, tags, images } = post
             return (
               <article
@@ -60,15 +112,25 @@ export default function Home({ posts }) {
           })}
         </div>
       </div>
-      {posts.length > MAX_DISPLAY && (
-        <div className="mt-8 flex justify-end text-base font-medium leading-6">
-          <Link
-            href="/blog"
-            className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-            aria-label="All posts"
+      {totalPages > 1 && (
+        <div className="mt-8 flex justify-center space-x-2">
+          <button
+            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+            className="rounded bg-primary-500 px-3 py-1 text-white disabled:opacity-50"
           >
-            All Posts &rarr;
-          </Link>
+            Previous
+          </button>
+          <span className="px-3 py-1">
+            {currentPage} of {totalPages}
+          </span>
+          <button
+            onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+            disabled={currentPage === totalPages}
+            className="rounded bg-primary-500 px-3 py-1 text-white disabled:opacity-50"
+          >
+            Next
+          </button>
         </div>
       )}
       {siteMetadata.newsletter?.provider && (
