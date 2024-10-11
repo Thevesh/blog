@@ -4,7 +4,7 @@ const siteMetadata = {
   author: 'Thevesh Theva',
   headerTitle: 'thevesh.com',
   description:
-    'Writing makes me think properly. Writing publicly makes me disciplined and accountable. On this personal site, I discuss data, first principles, and policy ideas. I hope to experience all the joys of writing along the way.',
+    'Writing makes me think properly. Writing publicly makes me disciplined and accountable. On this personal site, I discuss data, tech, policy ideas, and other interests. I hope to experience all the joys of writing along the way.',
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'https://thevesh.com',
