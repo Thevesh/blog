@@ -122,6 +122,11 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Layout content={mainContent} authorDetails={authorDetails} next={next} prev={prev}>
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 xl:max-w-5xl xl:px-0">
+          <div className="divide-y divide-gray-200 dark:divide-gray-700">
+            <div className="pb-8" />
+          </div>
+        </div>
         <MDXLayoutRenderer code={post.body.code} components={enhancedComponents} toc={post.toc} />
       </Layout>
     </>
